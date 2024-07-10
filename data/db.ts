@@ -1,5 +1,19 @@
 // db.ts
-export let database = [
+export interface Address {
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+}
+
+export interface Hotel {
+    id: number;
+    name: string;
+    address: Address;
+}
+
+
+export let database:Hotel[] = [
     {
         id: 1,
         name: "Sheriton Dallas Hotel",
