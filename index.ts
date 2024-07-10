@@ -1,8 +1,8 @@
 // url = https://github.com/changchup/lightci-assess.git
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import { database } from "./db";
+import apiRoutes from "./routes/api";
 
 dotenv.config();
 
@@ -10,11 +10,7 @@ const app: Express = express();
 app.use(bodyParser.json({ limit: "100mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
-
-app.get("/", (req: Request, res: Response) => {
-  res.json(database);
-});
-
+app.use("/", apiRoutes);  // Mounting API routes
 
 const port = process.env.PORT||3001;
 app.listen(port, () => {
